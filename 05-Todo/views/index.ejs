@@ -1,0 +1,48 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My To-Do List</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="todo-app">
+    <div class="todo-header">
+      <h1>📝 My To-Do List</h1>
+    </div>
+
+    <div class="todo-form">
+      <form action="/add" method="POST">
+        <input type="text" name="newTask" placeholder="What do you need to do?" autocomplete="off" required>
+        <button type="submit"><i class="fas fa-plus"></i> Add</button>
+      </form>
+    </div>
+
+    <ul class="todo-list">
+      <% if (tasks.length === 0) { %>
+        <li class="empty-state">🎉 All caught up! No tasks right now.</li>
+      <% } %>
+
+      <% tasks.forEach(task => { %>
+        <li class="todo-item">
+          <span class="task-name"><%= task.name %></span>
+
+          <div class="task-actions">
+            <form action="/edit/<%= task.id %>" method="GET">
+              <button type="submit" class="edit-btn" title="Edit"><i class="fas fa-pen"></i></button>
+            </form>
+
+            <form action="/delete" method="POST">
+              <input type="hidden" name="id" value="<%= task.id %>">
+              <button type="submit" class="delete-btn" title="Delete"><i class="fas fa-trash"></i></button>
+            </form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>
