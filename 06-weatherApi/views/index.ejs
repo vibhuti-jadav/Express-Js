@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://kit.fontawesome.com/3f1e6f28a4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header (Search + Units) -->
+    <div class="weather__header">
+      <div class="weather__search">
+        <form method="POST" action="/">
+          <i class="fas fa-search"></i>
+          <input type="text" name="city" placeholder="Search for a city..." required />
+        </form>
+      </div>
+
+      <div class="weather__units">
+        <span class="active">°C</span>
+        <span>°F</span>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <% if (weather) { %>
+    <div class="weather__body">
+      <h2><%= weather.city %>, <%= weather.country %></h2>
+      <p class="weather__datetime"><%= weather.date %></p>
+
+      <p class="weather__forecast"><%= weather.description %></p>
+
+      <div class="weather__icon">
+        <img src="http://openweathermap.org/img/w/<%= weather.icon %>.png" alt="Weather icon" />
+      </div>
+
+      <p class="weather__temperature"><%= weather.temp %>°</p>
+
+      <div class="weather__minmax">
+        <p>Min: <%= weather.temp_min %>°</p>
+        <p>Max: <%= weather.temp_max %>°</p>
+      </div>
+
+      <!-- Extra Info -->
+      <div class="weather__info">
+        <div class="weather__card">
+          <i class="fas fa-thermometer-half"></i>
+          <p>Real Feel: <%= weather.feels_like %>°</p>
+        </div>
+        <div class="weather__card">
+          <i class="fas fa-tint"></i>
+          <p>Humidity: <%= weather.humidity %>%</p>
+        </div>
+        <div class="weather__card">
+          <i class="fas fa-wind"></i>
+          <p>Wind: <%= weather.wind_speed %> m/s</p>
+        </div>
+        <div class="weather__card">
+          <i class="fas fa-tachometer-alt"></i>
+          <p>Pressure: <%= weather.pressure %> hPa</p>
+        </div>
+      </div>
+    </div>
+    <% } %>
+
+  </div>
+</body>
+</html>
