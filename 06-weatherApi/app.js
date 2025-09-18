@@ -48,10 +48,11 @@ app.post("/", async (req, res) => {
 
 
     res.render("index", { weather, error: null });
-  } catch (err) {
+  }catch (err) {
     res.render("index", { weather: null, error: "City not found!" });
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
